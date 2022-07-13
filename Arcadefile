@@ -1,0 +1,65 @@
+id: fish-folk-punchy
+name: Fish Folk- Punchy
+coverImage:
+  original: /static/images/cover/original.png
+admins:
+  - fllr
+description: |
+  What do you call a fish without an eye?
+gameplay:
+  players:
+    min: 1
+    recommended: 2
+    max: 4
+  rejection: Spectate
+logoUrl: /static/images/logo/original.png
+resources:
+  requests:
+    cpu: 100m
+    memory: 30M
+  limits:
+    cpu: 200m
+    memory: 50M
+marketingAssets:
+  - url: /static/images/cover/original.png
+    type: Image
+    title: cover
+    description: Cover image
+source:
+  assets: ./resources/
+  backend:
+    type: Docker
+    dockerfile: ./Dockerfile
+  frontend:
+    type: Unknown
+    pkg: ./pkg
+    executable: punchy
+  sidecar:
+    version: 0.1.0
+achievements:
+  - shortname: first-kill
+    title: First Kill
+    description: First kill in the game!
+    images:
+      achieved: ./static/images/achievements/kill/achieved.png
+      unachieved: ./static/images/achievements/kill/unachieved.png
+rankings:
+  - shortname: kills
+    title: Kills
+    description: # of Kills
+    aggregation: Individual
+    mode: Max
+    best: MaxIsBest
+  - shortname: shots
+    title: Shots
+    description: # of Shots
+    aggregation: Individual
+    mode: Min
+    best: MinIsBest
+  - shortname: deaths
+    title: Deaths
+    description: # of Deaths
+    aggregation: Individual
+    mode: Min
+    best: MinIsBest
+rating: E

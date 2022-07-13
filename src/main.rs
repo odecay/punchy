@@ -13,8 +13,10 @@ use enemy::*;
 use input::MenuAction;
 use iyes_loopless::prelude::*;
 use leafwing_input_manager::prelude::*;
+use networking::server::connection::{Connection, PlayerId};
 use player::*;
 use rand::{seq::SliceRandom, Rng};
+use std::net::SocketAddr;
 use structopt::StructOpt;
 
 #[cfg(feature = "debug")]
@@ -141,9 +143,18 @@ impl Default for PhysicsBundle {
 
 pub struct ArrivedEvent(Entity);
 
-fn main() {
+#[tokio::main]
+async fn main() {
     let engine_config = EngineConfig::from_args();
+    let session_address = "0.0.0.0:9999".parse().unwrap();
 
+    let ultimate = Connection::new(
+        "http://127.0.0.1:6666".to_string(),
+        session_address,
+        session_address,
+    )
+    .await;
+    let mut listener = ultimate.listen().await;
     let mut app = App::new();
     app.insert_resource(WindowDescriptor {
         title: "Fish Fight Punchy".to_string(),
@@ -296,6 +307,13 @@ fn main() {
     #[cfg(feature = "schedule_graph")]
     bevy_mod_debugdump::print_schedule(&mut app);
 
+    tokio::spawn(async move {
+        loop {
+            if let Ok(message) = listener.recv().await {
+                println!("received event: {:?}", message);
+            }
+        }
+    });
     app.run();
 }
 
