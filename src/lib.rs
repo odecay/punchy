@@ -42,7 +42,7 @@ impl Game {
 
             let event_loop = EventLoop::new();
             event_loop.run(move |event, _, control_flow| {
-                log::info!("Looping... this will not log yet");
+                // log::info!("Looping... this will not log yet");
             });
         })
     }
