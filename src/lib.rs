@@ -44,11 +44,12 @@ impl Game {
                 )
                 .await;
 
+            log::info!("Looping... this will not log yet");
             let test = Test(3);
             let event_loop = EventLoop::new();
             event_loop.run(move |event, _, control_flow| {
                 connection.send_unreliable_with(test);
-                log::info!("Looping... this will not log yet");
+                // log::info!("Looping... this will not log yet");
             });
         })
     }

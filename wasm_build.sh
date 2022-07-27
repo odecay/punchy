@@ -18,13 +18,13 @@ done
 function compile-client() {
   #wasm-pack build --release --target web
 
-  # RUSTFLAGS='-C target-feature=+atomics,+bulk-memory,+mutable-globals,+simd128' \
+  RUSTFLAGS='-C target-feature=+atomics,+bulk-memory,+mutable-globals,+simd128' \
   cargo build \
      --release \
     --lib \
     --target wasm32-unknown-unknown \
     --target-dir ./build/client \
-    # -Z build-std=panic_abort,std \
+    -Z build-std=panic_abort,std \
     $FLAG_CLIENT_SIDE_ONLY
   wasm-bindgen \
     --target web \
