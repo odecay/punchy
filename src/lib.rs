@@ -1,11 +1,15 @@
 use js_sys::Promise;
 use networking::client::connection::Connection;
+use serde::Serialize;
 use wasm_bindgen::prelude::*;
 use wasm_bindgen_futures::future_to_promise;
 use winit::event_loop::EventLoop;
 
 #[wasm_bindgen]
 pub struct Game {}
+
+#[derive(Serialize, Debug, Copy, Clone)]
+pub struct Test(u32);
 
 #[wasm_bindgen]
 impl Game {
@@ -40,9 +44,11 @@ impl Game {
                 )
                 .await;
 
+            let test = Test(3);
             let event_loop = EventLoop::new();
             event_loop.run(move |event, _, control_flow| {
-                // log::info!("Looping... this will not log yet");
+                connection.send_unreliable_with(test);
+                log::info!("Looping... this will not log yet");
             });
         })
     }
