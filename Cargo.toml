@@ -21,7 +21,7 @@ thiserror = "1.0.31"
 structopt = "0.3.26"
 rand = "0.8.5"
 getrandom = { version = "0.2", features = ["js"] }
-networking = { version = "0.5.6", registry = "hqg-shared" }
+networking = { version = "0.5.8", registry = "hqg-shared" }
 
 bevy_mod_debugdump = { version = "0.4", optional = true }
 bevy-inspector-egui = { version = "0.11", optional = true }

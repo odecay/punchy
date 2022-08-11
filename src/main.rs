@@ -13,7 +13,7 @@ use enemy::*;
 use input::MenuAction;
 use iyes_loopless::prelude::*;
 use leafwing_input_manager::prelude::*;
-use networking::server::connection::{Connection, PlayerId};
+use networking::server::connection::{Connection, Message, PlayerId};
 use player::*;
 use rand::{seq::SliceRandom, Rng};
 use std::net::SocketAddr;
@@ -154,6 +154,7 @@ async fn main() {
         session_address,
     )
     .await;
+    let bus = ultimate.get_bus();
     let mut listener = ultimate.listen().await;
     let mut app = App::new();
     app.insert_resource(WindowDescriptor {
@@ -310,7 +311,15 @@ async fn main() {
     tokio::spawn(async move {
         loop {
             if let Ok(message) = listener.recv().await {
-                println!("received event: {:?}", message);
+                match message {
+                    Message::Packet { player_id, data } => {
+                        bus.send_unreliable_with(player_id, &"unreliable");
+                        bus.send_reliable_with(player_id, &"reliable");
+                    }
+                    _ => {}
+                }
+                // println!("received event: {:?}", message);
+                // bus.send_unreliable_with();
             }
         }
     });

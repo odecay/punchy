@@ -48,7 +48,11 @@ impl Game {
             let test = Test(3);
             let event_loop = EventLoop::new();
             event_loop.run(move |event, _, control_flow| {
-                connection.send_unreliable_with(test);
+                connection.send_reliable_with(test);
+                while let Ok(packet) = connection_receiver.try_recv() {
+                    log::info!("packet: {:?}", std::str::from_utf8(&packet));
+                }
+                // connection.send_unreliable_with(test);
                 // log::info!("Looping... this will not log yet");
             });
         })
