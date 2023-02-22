@@ -372,7 +372,7 @@ fn explodable_system(
             .spawn(animated_sprite)
             .insert(Lifetime(Timer::from_seconds(seconds, TimerMode::Once)))
             .insert(explodable)
-            .push_children(&[attack_ent]);
+            .add_child(attack_ent);
     }
 }
 

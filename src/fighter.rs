@@ -158,7 +158,7 @@ impl ActiveFighterBundle {
         commands
             .entity(entity)
             .insert(active_fighter_bundle)
-            .push_children(&[hurtbox]);
+            .add_child(hurtbox);
 
         if let Some(attachment) = &fighter.attachment {
             //Clone fighter spritesheet

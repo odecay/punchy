@@ -891,7 +891,7 @@ fn flopping(
                     })
                     .insert(attack_frames)
                     .id();
-                commands.entity(entity).push_children(&[attack_entity]);
+                commands.entity(entity).add_child(attack_entity);
 
                 // Play attack sound effect
                 if let Some(effects) = fighter.audio.effect_handles.get(Flopping::ANIMATION) {
@@ -1039,7 +1039,7 @@ fn chaining(
                         })
                         .insert(attack.frames)
                         .id();
-                    commands.entity(entity).push_children(&[attack_entity]);
+                    commands.entity(entity).add_child(attack_entity);
                 }
             }
 
@@ -1144,7 +1144,7 @@ fn punching(
                     })
                     .insert(attack_frames)
                     .id();
-                commands.entity(entity).push_children(&[attack_entity]);
+                commands.entity(entity).add_child(attack_entity);
 
                 // Play attack sound effect
                 if let Some(effects) = fighter.audio.effect_handles.get(Punching::ANIMATION) {
@@ -1281,7 +1281,7 @@ fn ground_slam(
                     })
                     .insert(attack_frames)
                     .id();
-                commands.entity(entity).push_children(&[attack_entity]);
+                commands.entity(entity).add_child(attack_entity);
 
                 // Play attack sound effect
                 if let Some(fighter) = fighter_assets.get(meta_handle) {
@@ -2039,7 +2039,7 @@ fn melee_attacking(
                         })
                         .insert(attack_frames)
                         .id();
-                    commands.entity(weapon_ent).push_children(&[attack_entity]);
+                    commands.entity(weapon_ent).add_child(attack_entity);
 
                     // Play attack sound effect
                     if let Some(effects) = audio.effect_handles.get(MeleeAttacking::ANIMATION) {
