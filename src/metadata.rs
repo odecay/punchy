@@ -1,14 +1,13 @@
 use bevy::{
     math::{UVec2, Vec2, Vec3},
     prelude::{Color, Component, Deref, DerefMut, Handle, Image, Resource},
-    reflect::{FromReflect, Reflect, TypePath, TypeUuid},
+    reflect::{Reflect, TypePath, TypeUuid},
     sprite::TextureAtlas,
     utils::{default, HashMap},
 };
 use bevy_egui::egui;
 use bevy_kira_audio::AudioSource;
-// use bevy_mod_js_scripting::JsScript;
-use bevy_parallax::{LayerData, LayerSpeed, ParallaxMoveEvent};
+use bevy_parallax::{LayerData, LayerSpeed};
 use punchy_macros::HasLoadProgress;
 use serde::Deserialize;
 
@@ -40,10 +39,6 @@ pub struct GameMeta {
 
     pub default_settings: Settings,
     pub translations: TranslationsMeta,
-    // #[serde(default)]
-    // pub scripts: Vec<String>,
-    // #[serde(skip)]
-    // pub script_handles: Vec<Handle<JsScript>>,
 }
 
 #[derive(HasLoadProgress, Deserialize, Clone, Debug)]
@@ -276,7 +271,6 @@ pub struct ParallaxLayerMeta {
     pub rows: usize,
     pub scale: f32,
     pub z: f32,
-    pub transition_factor: f32,
     #[serde(default)]
     pub position: Vec2,
 }
@@ -291,7 +285,6 @@ impl From<ParallaxLayerMeta> for LayerData {
             rows: meta.rows,
             scale: meta.scale,
             z: meta.z,
-            transition_factor: meta.transition_factor,
             position: meta.position,
             ..default()
         }

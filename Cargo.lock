@@ -385,8 +385,9 @@ dependencies = [
 
 [[package]]
 name = "bevy-parallax"
-version = "0.5.0"
-source = "git+https://github.com/Corrosive-Games/bevy-parallax.git#c3a36cc7a1eafd8263c3c70a15c776e71580ea9a"
+version = "0.6.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5943d4d2f06b10eee372099c7c7ce44d4485455b88c95451c1c15e2ced9c53c9"
 dependencies = [
  "bevy",
  "serde",
