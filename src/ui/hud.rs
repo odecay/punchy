@@ -1,6 +1,6 @@
 //! In-game HUD
 
-use bevy::{prelude::*};
+use bevy::prelude::*;
 use bevy_egui::{egui, EguiContexts};
 
 use crate::{

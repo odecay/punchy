@@ -1,11 +1,6 @@
 use std::time::Duration;
 
-use bevy::{
-    hierarchy::DespawnRecursiveExt,
-    math::Vec2,
-    prelude::*,
-    reflect::{Reflect},
-};
+use bevy::{hierarchy::DespawnRecursiveExt, math::Vec2, prelude::*, reflect::Reflect};
 use bevy_rapier2d::prelude::*;
 
 use serde::Deserialize;
