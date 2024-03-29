@@ -514,6 +514,21 @@ fn collect_fighter_eliminations(
 //
 // Transition states systems
 //
+//
+//
+
+fn transition_from<T: Component>(
+    mut commands: Commands,
+    mut fighters: Query<(Entity, &mut StateTransitionIntents), With<T>>,
+) {
+    for (entity, mut transition_intents) in &mut fighters {
+        transition_intents.transition_to_higher_priority_states::<T>(
+            entity,
+            Idling::PRIORITY,
+            &mut commands,
+        );
+    }
+}
 
 /// Initiate any transitions from the idling state
 fn transition_from_idle(

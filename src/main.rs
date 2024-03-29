@@ -5,7 +5,7 @@
 use std::time::Duration;
 
 use bevy::{asset::ChangeWatcher, prelude::*, window::WindowResolution};
-use bevy_parallax::{CreateParallaxEvent, ParallaxPlugin};
+use bevy_parallax::{ParallaxPlugin};
 use bevy_rapier2d::prelude::*;
 use fighter::Stats;
 use input::MenuAction;

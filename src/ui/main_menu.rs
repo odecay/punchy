@@ -744,11 +744,11 @@ impl<'w, 's> ControlInputBindingEvents<'w, 's> {
                 } else {
                     // Look for axes tilted more than 0.5 in either direction.
                     for event in self.gamepad_axis_events.iter() {
-                        if let GamepadAxisChangedEvent {
-                            gamepad,
+                        let GamepadAxisChangedEvent {
+                            gamepad: _,
                             axis_type,
                             value,
-                        } = event
+                        } = event;
                         {
                             let axis_type = AxisType::from(*axis_type);
                             // Create an axis positive movement binding

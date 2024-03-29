@@ -3,7 +3,7 @@ use bevy::{
     utils::HashMap,
     window::{PrimaryWindow, WindowMode},
 };
-use bevy_egui::{egui, EguiContext, EguiContexts, EguiInput, EguiPlugin, EguiSettings};
+use bevy_egui::{egui, EguiContexts, EguiInput, EguiPlugin, EguiSettings};
 use leafwing_input_manager::prelude::ActionState;
 
 use crate::{

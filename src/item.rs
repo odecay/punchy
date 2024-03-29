@@ -18,7 +18,7 @@ pub struct ItemPlugin;
 
 impl Plugin for ItemPlugin {
     fn build(&self, app: &mut App) {
-        app.add_system(drop_system).add_system(explodable_system);
+        app.add_systems(Update, (drop_system, explodable_system));
     }
 }
 

@@ -1,17 +1,17 @@
 use bevy::prelude::*;
 use bevy_egui::*;
-use bevy_fluent::Localization;
+
 use bevy_inspector_egui::egui::{Color32, Stroke};
 use bevy_rapier2d::{
     plugin::RapierContext,
-    prelude::{ColliderDebugColor, DebugRenderContext},
+    prelude::ColliderDebugColor,
     rapier::{
         math::{Point, Real},
         prelude::{DebugRenderBackend, DebugRenderObject},
     },
 };
 
-use crate::{camera::YSort, localization::LocalizationExt, metadata::FighterMeta};
+use crate::localization::LocalizationExt;
 
 /// System that renders the debug tools window which can be toggled by pressing F12
 // pub fn debug_tools_window(

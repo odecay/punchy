@@ -15,7 +15,7 @@ use super::{
 };
 
 pub fn pause_menu(
-    mut commands: Commands,
+    _commands: Commands,
     // mut egui_context: ResMut<EguiContext>,
     mut egui_context: Query<&mut EguiContext, With<PrimaryWindow>>,
     game: Res<GameMeta>,

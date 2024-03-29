@@ -21,7 +21,7 @@ use crate::{
 };
 
 use bevy::{ecs::system::SystemParam, render::camera::ScalingMode};
-use bevy_egui::{egui, EguiContext, EguiContexts};
+use bevy_egui::{egui, EguiContexts};
 use bevy_fluent::Locale;
 use bevy_parallax::ParallaxCameraComponent;
 use leafwing_input_manager::{
@@ -90,11 +90,9 @@ pub struct GameLoader<'w, 's> {
     commands: Commands<'w, 's>,
     game_handle: Res<'w, GameHandle>,
     assets: ResMut<'w, Assets<GameMeta>>,
-    // egui_ctx: Query<'w, 's, &'static EguiContext, With<PrimaryWindow>>,
     egui_ctx: EguiContexts<'w, 's>,
     events: EventReader<'w, 's, AssetEvent<GameMeta>>,
     next_state: ResMut<'w, NextState<GameState>>,
-    create_parallax: EventWriter<'w, CreateParallaxEvent>,
 }
 
 impl<'w, 's> GameLoader<'w, 's> {
@@ -320,10 +318,10 @@ fn load_level(
     mut items_assets: ResMut<Assets<ItemMeta>>,
     // mut parallax: ResMut<ParallaxResource>,
     mut create_parallax: EventWriter<CreateParallaxEvent>,
-    mut texture_atlases: ResMut<Assets<TextureAtlas>>,
-    asset_server: Res<AssetServer>,
+    _texture_atlases: ResMut<Assets<TextureAtlas>>,
+    _asset_server: Res<AssetServer>,
     game: Res<GameMeta>,
-    window_query: Query<&Window, With<PrimaryWindow>>,
+    _window_query: Query<&Window, With<PrimaryWindow>>,
     mut storage: ResMut<Storage>,
     loading_resources: LoadingResources,
     mut next_state: ResMut<NextState<GameState>>,
@@ -396,10 +394,10 @@ fn hot_reload_level(
     // mut parallax: ResMut<ParallaxResource>,
     mut create_parallax: EventWriter<CreateParallaxEvent>,
     mut events: EventReader<AssetEvent<LevelMeta>>,
-    mut texture_atlases: ResMut<Assets<TextureAtlas>>,
+    _texture_atlases: ResMut<Assets<TextureAtlas>>,
     level_handle: Res<LevelHandle>,
     assets: Res<Assets<LevelMeta>>,
-    asset_server: Res<AssetServer>,
+    _asset_server: Res<AssetServer>,
     window_query: Query<&Window, With<PrimaryWindow>>,
     camera_query: Query<Entity, With<Camera>>,
 ) {
@@ -408,7 +406,7 @@ fn hot_reload_level(
             let level = assets.get(handle).unwrap();
             if handle == &**level_handle {
                 // Update the level background
-                let window = window_query.get_single().unwrap();
+                let _window = window_query.get_single().unwrap();
                 let camera = camera_query.get_single().unwrap();
                 create_parallax.send(CreateParallaxEvent {
                     layers_data: level.parallax_background.get_layer_data(),

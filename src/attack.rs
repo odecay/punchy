@@ -4,7 +4,7 @@ use bevy::{
     hierarchy::DespawnRecursiveExt,
     math::Vec2,
     prelude::*,
-    reflect::{FromReflect, Reflect},
+    reflect::{Reflect},
 };
 use bevy_rapier2d::prelude::*;
 

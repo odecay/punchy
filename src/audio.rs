@@ -3,7 +3,7 @@
 use rand::{prelude::SliceRandom, thread_rng};
 
 use bevy::{prelude::*, utils::HashMap, window::PrimaryWindow};
-use bevy_egui::{egui::output::OutputEvent, EguiContext, EguiOutput};
+use bevy_egui::{egui::output::OutputEvent, EguiOutput};
 use bevy_kira_audio::{AudioApp, AudioChannel, AudioControl, AudioSource};
 // use iyes_loopless::prelude::*;
 
@@ -35,7 +35,7 @@ pub struct AudioPlugin;
 
 impl Plugin for AudioPlugin {
     fn build(&self, app: &mut App) {
-        app.add_plugin(bevy_kira_audio::AudioPlugin)
+        app.add_plugins(bevy_kira_audio::AudioPlugin)
             .add_audio_channel::<MusicChannel>()
             .add_audio_channel::<EffectsChannel>()
             .add_systems(Startup, set_audio_channels_volume)

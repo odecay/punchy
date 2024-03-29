@@ -1,7 +1,7 @@
 //! In-game HUD
 
-use bevy::{prelude::*, window::PrimaryWindow};
-use bevy_egui::{egui, EguiContext, EguiContexts};
+use bevy::{prelude::*};
+use bevy_egui::{egui, EguiContexts};
 
 use crate::{
     damage::Health,

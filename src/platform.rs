@@ -34,7 +34,7 @@ impl Plugin for PlatformPlugin {
 /// Will transition to [`GameState::LoadingGame`] when finished.
 pub fn load_storage(
     mut started: Local<bool>,
-    mut commands: Commands,
+    _commands: Commands,
     mut storage: ResMut<Storage>,
     mut next_state: ResMut<NextState<GameState>>,
 ) {
