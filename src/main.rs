@@ -105,7 +105,7 @@ fn main() {
             ..default()
         };
         if let Some(asset_folder) = &engine_config.asset_dir {
-            asset_plugin.asset_folder = asset_folder.clone();
+            asset_plugin.asset_folder.clone_from(asset_folder);
         }
         builder = builder.set(asset_plugin);
 
