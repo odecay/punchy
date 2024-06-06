@@ -224,7 +224,9 @@ pub fn attachment_system(
                 //Sync animation
                 if attached.sync_animation {
                     animation.current_frame = parent_animation.current_frame;
-                    animation.current_animation.clone_from(&parent_animation.current_animation);
+                    animation
+                        .current_animation
+                        .clone_from(&parent_animation.current_animation);
                     animation.timer = parent_animation.timer.clone();
                     animation.played_once = parent_animation.played_once;
                 }
